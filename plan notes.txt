@@ -1,0 +1,29 @@
+- We want to create a website where users can acces a DB of UFO reports in the UK
+        * The user is able to filter these events by date (most recent to oldest posted
+        * The user is able to filter these events by Location
+                                1) default: Alphabetically listed by town_village_city
+                                2) //STRETCH: option to filter by County // when county name is typed
+                                3) option to filter by user input when city/town name is typed
+        * The user is able to see a page of events
+
+
+- The user is able to create an account with a secure password by their choice
+        * Once registered / logged in the user is able to add, delete and edit events to the existing DB
+        * This will store the 1) date of event
+                              2) first published on the site
+                              3) last edit date
+                              4) title of event (allow null : false)
+                              5) town_village (allow null: false)
+                              6) brief_description (allow null: false)
+                              7) time of event (allow null : true?)
+                           
+
+
+
+ROUTES (PSUEDO CODE):
+
+
+
+
+
+MODELS (PSEUDO CODE):
