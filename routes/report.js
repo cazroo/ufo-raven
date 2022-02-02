@@ -31,24 +31,15 @@ router.delete("/:id", async(req, res) => {
 
 //update single report
 router.put("/:id", async(req, res) => {
-    const updatedReport = await Report.update({
-        title: req.body.title, 
-        time: req.body.time,
-        location: req.body.location,
-        description: req.body.description
-    }, {where: {id: req.params.id}} );
+    const updatedReport = await Report.update(req.body, {where: {id: req.params.id}} );
     const report = await Report.findOne({where: {id: req.params.id}});
     res.status(202).json({msg:`${report} updated successfully`});
 })
 
 // create individual report
 router.post("/", async (req, res) => {
-    const report = await Report.create({
-        title: req.body.title, 
-        time: req.body.time,
-        location: req.body.location,
-        description: req.body.description
-    });
-    req.status(201).json({msg:`${report} created`});
+    const report = await Report.create(req.body);
+    res.status(200).json({msg:`${report} created`});
 })
+
 
