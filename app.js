@@ -3,13 +3,7 @@ const express = require("express");
 const cors = require('cors');
 const passport = require("passport");
 
-const connection = require("./connection");
-const User = require("./models/user");
-const userRouter = require("./routes/user");
-const { registerStrategy } = require("./middleware/auth");
 
-const app = express();
-const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(cors());
