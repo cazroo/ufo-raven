@@ -17,9 +17,9 @@ const Report = communication.define("Report", {
     description: {
         type: DataTypes.STRING,
         allowNull: false
+        
     },
 });
 
-console.log(Report);
 
 module.exports = Report;
