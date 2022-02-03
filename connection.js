@@ -1,3 +1,18 @@
+let connection;
+if (process.env.NODE_ENV === "production") {
+    // heroku connection
+} else if (process.env.NODE_ENV === "devmysql") {
+    // mysql connection
+} else if (process.env.NODE_ENV === "devsqlite") {
+    connection = new Sequelize ({
+        dialect: 'sqlite',
+        storage: 'data.db'
+    });
+};
+
+module.exports = connection;
+
+
 // const mysql2 = require("mysql2");
 
 // const connection = mysql2.createConnection(process.env.DB_URI);
@@ -7,14 +22,12 @@
 //   console.log("connect to the db");
 // });
 
-
 //2
 
-const { Sequelize } = require("sequelize");
-const connection = new Sequelize(process.env.DB_URI);
+// const { Sequelize } = require("sequelize");
+// const connection = new Sequelize(process.env.DB_URI);
 
-module.exports = connection;
-
+// module.exports = connection;
 
 //3
 
@@ -26,20 +39,19 @@ module.exports = connection;
 //   module.exports.connection = new Sequelize(
 //     `${process.env.DATABASE_URL}?sslmode=no-verify`,
 //     {
-//         url: process.env.DB_URI,
-//         dialect: "mysql",
-//         dialectOptions: {
-//             ssl: {
-//                 rejectUnauthorized: false,
-//             },
+//       url: process.env.DB_URI,
+//       dialect: "postgres",
+//       dialectOptions: {
+//         ssl: {
+//           rejectUnauthorized: false,
 //         },
+//       },
 //     }
 //   );
-//   console.log('hello')
+//   console.log("hello");
 // } else {
-//     connection = new Sequelize (process.env.DB_URI);
-//     console.log("DB connection successful");
+//   connection = new Sequelize(process.env.DB_URI);
+//   console.log("DB connection successful");
 // }
 
 // module.exports.default = connection;
-
