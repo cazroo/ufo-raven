@@ -1,17 +1,21 @@
+const { Sequelize } = require("sequelize");
+require("dotenv").config();
+
 let connection;
 if (process.env.NODE_ENV === "production") {
-    // heroku connection
+  // heroku connection
 } else if (process.env.NODE_ENV === "devmysql") {
-    // mysql connection
+  connection = new Sequelize(process.env.DATABASE_URL, {
+    logging: false,
+  });
 } else if (process.env.NODE_ENV === "devsqlite") {
-    connection = new Sequelize ({
-        dialect: 'sqlite',
-        storage: 'data.db'
-    });
-};
+  connection = new Sequelize({
+    dialect: "mysql",
+    storage: "data.db",
+  });
+}
 
 module.exports = connection;
-
 
 // const mysql2 = require("mysql2");
 
@@ -25,7 +29,9 @@ module.exports = connection;
 //2
 
 // const { Sequelize } = require("sequelize");
-// const connection = new Sequelize(process.env.DB_URI);
+// const connection = new Sequelize(process.env.DB_URI, {
+//   logging: false,
+// });
 
 // module.exports = connection;
 
