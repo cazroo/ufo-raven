@@ -8,7 +8,6 @@
 // });
 
 
-
 //2
 
 const { Sequelize } = require("sequelize");
