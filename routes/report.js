@@ -36,10 +36,18 @@ router.put("/:id", async(req, res) => {
     res.status(202).json({msg:`${report} updated successfully`});
 })
 
+
+// TO DO, throw an error if one of objects is null
 // create individual report
 router.post("/", async (req, res) => {
-    const report = await Report.create(req.body);
-    res.status(200).json({msg:`${report} created`});
+    try {
+        const report = await Report.create(req.body);
+        res.status(200).json({msg:`${report} created`});
+        
+    } catch (error) {
+        
+    }
+
 })
 
 

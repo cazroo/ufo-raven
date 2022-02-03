@@ -21,5 +21,4 @@ const Report = communication.define("Report", {
     },
 });
 
-
 module.exports = Report;
