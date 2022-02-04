@@ -1,7 +1,5 @@
 require("dotenv").config();
 const bcrypt = require("bcrypt");
-const saltRounds = parseInt(process.env.SALT_ROUNDS);
-const password = 'password';
 
 const makeSalt = async (saltRounds, password) => {
     try {

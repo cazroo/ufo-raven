@@ -1,13 +1,13 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const connection = require("../connection");
 
-const Report = connection.define("Report", {
+const Report = connection.define("reports", {
     title: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    time: {
-        type: DataTypes.INTEGER,
+    date: {
+        type: DataTypes.STRING,
         allowNull: false,
     },
     location: {
