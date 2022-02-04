@@ -1,12 +1,11 @@
 const router = require("express").Router();
-const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 
 const session = { session: false };
 
-//======================= register user =======================
+//======================= register user ======================= (checked & worked)
 
 // takes the authenticate req and returns a response
 const register = async (req, res, next) => {
@@ -25,6 +24,8 @@ router.post(
   passport.authenticate("register", session),
   register
 );
+
+// login (checked & worked)
 
 const login = async (req, res, next) => {
   passport.authenticate("login", (error, user) => {
@@ -55,6 +56,7 @@ const login = async (req, res, next) => {
 
 router.post("/login", login);
 
+// get all users (checked & worked)
 
 router.get("/getallusers", async (req, res) => {
   const allUsers = await User.findAll({
