@@ -1,16 +1,15 @@
 const { Sequelize } = require("sequelize");
-require("dotenv").config();
 
 let connection;
 if (process.env.NODE_ENV === "production") {
   // heroku connection
-} else if (process.env.NODE_ENV === "devmysql") {
+} else if (process.env.NODE_ENV === "development") {
   connection = new Sequelize(process.env.DATABASE_URL, {
     logging: false,
   });
 } else if (process.env.NODE_ENV === "devsqlite") {
   connection = new Sequelize({
-    dialect: "mysql",
+    dialect: "sqlite",
     storage: "data.db",
   });
 }

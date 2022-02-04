@@ -1,13 +1,13 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const communication = require("../communication");
+const connection = require("../connection");
 
-const Report = communication.define("Report", {
+const Report = connection.define("Report", {
     title: {
         type: DataTypes.STRING,
         allowNull: false
     },
     time: {
-        type: DataTypes.INT,
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
     location: {
