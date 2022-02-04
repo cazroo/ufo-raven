@@ -20,8 +20,13 @@ passport.use("register", registerStrategy);
 passport.use("login", loginStrategy);
 passport.use(verifyStrategy);
 
-app.listen(process.env.PORT || process.env.PORT2, () => {
-  connection.authenticate();
-  User.sync({ alter: true });
-  console.log("App is online");
+app.listen(process.env.PORT || process.env.PORT2, async() => {
+  try {
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    await connection.authenticate();
+    await User.sync({ alter: true });
+    console.log("App is online");
+  } catch(error){
+    console.log(error);
+  }
 });
