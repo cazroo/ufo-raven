@@ -6,6 +6,7 @@ const passport = require("passport");
 const userRouter = require("./routes/user");
 const reportRouter = require("./routes/report");
 const ufoRouter = require("./routes/routesUFO");
+const adminRouter = require("./routes/admin");
 
 const {
   registerStrategy,
@@ -24,6 +25,7 @@ app.use(cors());
 app.use("/user", userRouter);
 app.use("/report", reportRouter);
 app.use("/ufo", ufoRouter);
+app.use("/admin", adminRouter);
 
 passport.use("register", registerStrategy);
 passport.use("login", loginStrategy);
