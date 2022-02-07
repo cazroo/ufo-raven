@@ -4,7 +4,7 @@ const Report = require("../models/report");
 // get all reports  (checked & worked)
 router.get("/", async (req, res) => {
     const allReports = await Report.findAll({
-        attributes: ["id", "title", "date", "location", "description"]
+        attributes: ["id", "date", "location", "description"]
     });
     res.status(200).json({msg: "All reports found", data: allReports});
 })
@@ -15,11 +15,11 @@ router.get("/:id", async (req, res) => {
     res.status(200).json({msg: `${report} found`});
 })
 
-// delete all reports (checked & worked)
-router.delete("/", async (req, res) => {
-    const deletedReport = await Report.destroy({where:{}});
-    res.status(200).json({msg:`deleted ${deletedReport}`});
-})
+// // delete all reports (checked & worked)
+// router.delete("/", async (req, res) => {
+//     const deletedReport = await Report.destroy({where:{}});
+//     res.status(200).json({msg:`deleted ${deletedReport}`});
+// })
 
 //delete single report (checked & worked)
 router.delete("/:id", async(req, res) => {
@@ -39,7 +39,7 @@ router.put("/:id", async(req, res) => {
 // create individual report (checked & worked)
 router.post("/", async (req, res) => {
     const report = await Report.create(req.body);
-    res.status(200).json({msg:`${report} created`});
+    res.status(200).json({msg: `Created`, report});
 })
 
 module.exports = router;

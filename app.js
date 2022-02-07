@@ -7,6 +7,7 @@ const userRouter = require("./routes/user");
 const reportRouter = require("./routes/report");
 const ufoRouter = require("./routes/routesUFO");
 const adminRouter = require("./routes/admin");
+const locationRouter = require("./routes/location");
 
 const {
   registerStrategy,
@@ -26,6 +27,7 @@ app.use("/user", userRouter);
 app.use("/report", reportRouter);
 app.use("/ufo", ufoRouter);
 app.use("/admin", adminRouter);
+app.use("/location", locationRouter);
 
 passport.use("register", registerStrategy);
 passport.use("login", loginStrategy);
