@@ -4,7 +4,7 @@ const Report = require("../models/report");
 // get all reports  (checked & worked)
 router.get("/", async (req, res) => {
     const allReports = await Report.findAll({
-        attributes: ["id", "title", "date", "location", "description"]
+        attributes: ["id", "date", "location", "description"]
     });
     res.status(200).json({msg: "All reports found", data: allReports});
 })
