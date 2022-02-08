@@ -16,15 +16,17 @@ const {
 } = require("./middleware/auth");
 
 const User = require("./models/user");
-const Report = require("./models/report")
-
+const Report = require("./models/report");
+const Location = require("./models/location");
 const connection = require("./connection");
+
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/user", userRouter);
 app.use("/report", reportRouter);
+app.use("/location", locationRouter);
 app.use("/ufo", ufoRouter);
 app.use("/admin", adminRouter);
 app.use("/location", locationRouter);
@@ -37,6 +39,7 @@ app.listen(process.env.PORT || process.env.PORT2, async() => {
   try {
     await connection.authenticate();
     await User.sync({ alter: true });
+    await Location.sync({alter: true});
     await Report.sync({ alter: true });
     console.log("App is online");
   } catch(error){
