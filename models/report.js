@@ -11,10 +11,13 @@ const Report = connection.define("reports", {
         type: DataTypes.STRING,
         allowNull: false
         
-    },
+    }
 });
 
+
 Report.belongsTo(Location);
+Location.hasMany(Report);
+
 
 
 module.exports = Report;
