@@ -27,4 +27,16 @@ router.get("/:id", async (req, res) => {
     }
 });
 
+//create a location
+router.post("/", async(req, res) => {
+    try {
+        const location = await Report.create(req.body);
+        res.status(200).json({msg: `${location} created`});
+        const location = await Location.create(req.body);
+        res.status(201).json({msg: `location created`, location});
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({msg: `Unsuccessful, please try again`})
+    }});
+
 module.exports = router;
