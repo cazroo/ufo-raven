@@ -29,8 +29,9 @@ router.get("/:id", async (req, res) => {
 //create a location
 router.post("/", async(req, res) => {
     try {
-        const location = await Location.create(req.body);
-        res.status(201).json({msg: `location created`, location});
+        const location = await Location.create ({name: req.body.name});
+        const report = await location.createReport({date: req.body.date, description: req.body.description})
+        res.status(201).json({msg: `location created`, location, report});
     } catch (error) {
         console.log(error)
         res.status(500).json({msg: `Unsuccessful, please try again`})

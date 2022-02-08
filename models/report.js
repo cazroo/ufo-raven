@@ -16,7 +16,8 @@ const Report = connection.define("reports", {
 
 
 Report.belongsTo(Location);
-Location.hasMany(Report);
+
+Location.hasOne(Report);
 
 
 
