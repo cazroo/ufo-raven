@@ -29,6 +29,7 @@ app.use("/report", reportRouter);
 app.use("/location", locationRouter);
 app.use("/ufo", ufoRouter);
 app.use("/admin", adminRouter);
+app.use("/location", locationRouter);
 
 passport.use("register", registerStrategy);
 passport.use("login", loginStrategy);

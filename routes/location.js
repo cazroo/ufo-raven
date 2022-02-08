@@ -6,17 +6,16 @@ const Report = require("../models/report");
 router.get("/", async(req, res) => {
     try {
     const allLocations = await Location.findAll({
-        where: {location},
-        attributes: ["id", "location"]
+        attributes: ["id", "name"]
     });
-    res.status(200).json({msg: "All locations listed", data: allLocations});
-    } catch(error) {
-        console.log(error)
-        res.status(500).json({msg: `Unsuccessful, please try again`})
-    }
+    res.status(200).json({ msg: "All locations listed", data: allLocations });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: `Unsuccessful, please try again` });
+  }
 });
 
-//get single location
+//get single location (checked & worked)
 router.get("/:id", async (req, res) => {
     try {
         const location = await Location.findOne({where: {id: req.params.id}});
@@ -30,8 +29,6 @@ router.get("/:id", async (req, res) => {
 //create a location
 router.post("/", async(req, res) => {
     try {
-        const location = await Report.create(req.body);
-        res.status(200).json({msg: `${location} created`});
         const location = await Location.create(req.body);
         res.status(201).json({msg: `location created`, location});
     } catch (error) {
