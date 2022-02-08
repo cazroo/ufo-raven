@@ -20,7 +20,7 @@ router.get("/", async(req, res) => {
 router.get("/:id", async (req, res) => {
     try {
         const location = await Report.findOne({where: {id: req.params.id}});
-        res.status(200).json({msg: `${location} listed`});
+        res.status(200).json({msg: `listed`, location});
     } catch (error) {
         console.log(error)
         res.status(500).json({msg: `Unsuccessful, please try again`})
