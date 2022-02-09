@@ -2,6 +2,9 @@ const router = require("express").Router();
 const User = require("../models/user");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
+const Report = require("../models/report");
+const Location = require("../models/location");
+const { Sequelize } = require("sequelize");
 
 const session = { session: false };
 
@@ -29,28 +32,31 @@ router.post(
 
 const login = async (req, res, next) => {
   passport.authenticate("login", (error, user) => {
-      try {
+    try {
+      if (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error" });
+      } else if (!user) {
+        res.status(401).json({ msg: "401 not found." });
+      } else {
+        const loginFn = (error) => {
           if (error) {
-              console.log(error);
-              res.status(500).json({message: "Internal Server Error"});
-          } else if (!user) {
-              res.status(401).json({msg: "401 not found."});
+            return next(error);
           } else {
-              const loginFn = (error) => {
-                  if(error) {
-                      return next(error);
-                  } else {
-                      const userData = {id: user.id, name: user.name};
-                      const data = {user, token: jwt.sign({user: userData}, process.env.SECRET_KEY)};
-                      res.status(200).json(data);
-                  }
-              };
-
-              req.login(user, session, loginFn);
+            const userData = { id: user.id, name: user.name };
+            const data = {
+              user,
+              token: jwt.sign({ user: userData }, process.env.SECRET_KEY),
+            };
+            res.status(200).json(data);
           }
-      } catch (error) {
-          return next(error);
+        };
+
+        req.login(user, session, loginFn);
       }
+    } catch (error) {
+      return next(error);
+    }
   })(req, res, next); //IFFY - Immediately Invoked Function Expression
 };
 
@@ -65,8 +71,25 @@ router.get("/getallusers", async (req, res) => {
   res.status(200).json({ msg: "worked", data: allUsers });
 });
 
+router.get("/:id", async (req, res) => {
+  const user = await User.findAll({
+    where: { id: req.params.id },
+    include: [
+      {
+        model: Report,
+        attributes: ["date", "description"], // <----- Add this line
+        include: [
+          {
+            attributes: ["name"], // <----- Add this line
+            model: Location,
+            required: true,
+          },
+        ],
+      },
+    ],
+  });
 
-
-
+  res.status(200).json(user);
+});
 
 module.exports = router;

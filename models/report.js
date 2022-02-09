@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const connection = require("../connection");
-const Location = require("./location")
+const Location = require("./location");
+const User = require("./user");
 
 const Report = connection.define("reports", {
     date: {
@@ -16,8 +17,12 @@ const Report = connection.define("reports", {
 
 
 Report.belongsTo(Location);
+Report.belongsTo(User)
+User.hasMany(Location)
+Location.belongsTo(User)
 
-Location.hasOne(Report);
+Location.hasMany(Report);
+User.hasMany(Report);
 
 
 
