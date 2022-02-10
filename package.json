@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mapbox/node-pre-gyp": "^1.0.8",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^15.0.0",
