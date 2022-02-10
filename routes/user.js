@@ -77,7 +77,7 @@ router.get("/:id", async (req, res) => {
     include: [
       {
         model: Report,
-        attributes: ["date", "description"], // <----- Add this line
+        attributes: ["id", "date", "description"], // <----- Add this line
         include: [
           {
             attributes: ["name"], // <----- Add this line
